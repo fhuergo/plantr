@@ -4,23 +4,16 @@ const {db, veggieTable, gardenerTable, plotTable} = require('./models');
 db.sync({force: true})
 .then(() => {
   console.log('Connected');
+  return veggieTable.create(
+    {
+      name: 'carrot',
+      color: 'orange',
+      planted_on: '2018-06-18'
+    }
+  );
 })
-// .catch((err) => {
-//   console.log(err);
-// });
-// .finally(() => {
-//   models.close();
-// });
-
-veggieTable.create(
-  {
-    name: 'carrot',
-    color: 'orange',
-    planted_on: '2018-06-18'
-  }
-)
 .then(() => {
-  return
+  db.close();
 })
 .catch((error) => {
   console.log(error);
